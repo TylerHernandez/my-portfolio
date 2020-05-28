@@ -1,9 +1,59 @@
+.nav-link {
+font-family: 'Merriweather', serif;
+font-weight: bold;
+font-size: 40px;
+text-align: center;
+}
+
 #content {
   margin-left: auto;
   margin-right: auto;
-  width: 650px;
+  width: 1050px;
+  background-color:lightblue;
+  text-align: center;
+  font-size:50px;
 }
 
-#greeting-container {
-  margin-top: 20px;
+#title {
+  margin-top:20px;
+  margin-left: auto;
+  margin-right: auto;
+  color: darkblue;
+  font-size: 150px;
+  margin-bottom: 20px;
+}
+
+#fact-container{
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+#clickme{
+  font-size:40px;
+}
+
+#subcontent {
+    margin-top: 15px;
+    margin-bottom: 30px;
+    padding-bottom:30px;
+}
+
+#percyContent {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1050px;
+  background-color:transparent;
+  text-align: center;
+  font-size:50px;
+  margin-bottom:2500px;
+  color:darkorange;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
+}
+#percyDivs{
+  padding-top:200px;
+  font-weight:bold;
+}
+#percyBody {
+ background-image: url("images/percy.jpg");
 }
