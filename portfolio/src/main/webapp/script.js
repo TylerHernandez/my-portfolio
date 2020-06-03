@@ -87,11 +87,11 @@ function getJSON() {
     const dataListElement = document.getElementById('server-data-container');
     dataListElement.innerHTML = '';
     dataListElement.appendChild(
-        createListElement('first: ' + data.one));
+        createListElement('first: ' + data.a1));
     dataListElement.appendChild(
-        createListElement('second: ' + data.two));
+        createListElement('second: ' + data.a2));
     dataListElement.appendChild(
-        createListElement('third: ' + data.three));
+        createListElement('third: ' + data.a3));
         console.log("hit");
         console.log(data);
   });

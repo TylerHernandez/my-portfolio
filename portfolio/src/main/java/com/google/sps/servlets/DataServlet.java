@@ -32,7 +32,7 @@ public class DataServlet extends HttpServlet {
     list.add("Hey this is message number 1");
     list.add("AND this is message number 2");
     list.add("couldn't forget about message #3");
-    String json = convertToJson(list);
+    String json = nconvertToJson(list);
     System.out.println(json);
     response.getWriter().println(json);
   }
@@ -49,5 +49,20 @@ public class DataServlet extends HttpServlet {
     json += "\"" + list.get(2) + "\"";
     json += "}";
     return json;
+  }
+// this allows for as many elements as possible in list
+  private String nconvertToJson(ArrayList<String> list) {
+      String json = "{";
+      for (int i=0; i<list.size()-1; i++)
+      {
+          json+="\"a" + Integer.toString(i+1) + "\": ";
+          json+= "\"" + list.get(i) + "\"";
+          json+= ", ";
+      }
+      json+="\"a" + Integer.toString(list.size()) + "\": ";
+      json += "\"" + list.get(list.size()-1) + "\"";
+      json += "}";
+  
+  return json;
   }
 }
