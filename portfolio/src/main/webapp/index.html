@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="getJSON()">
     <div id="content">
 
       <h1 id = "title">Tyler Hernandez</h1>
@@ -27,25 +27,13 @@
             <a> I am making this portfolio during my time here at Google as a STEP intern </a>
         </div>
 
-     <button onclick="getJSON()">Fetch data from servlet</button>
-      <div id="server-data-container"></div>
-
-      
-<form action="/text" method="POST">
-
-      <p>Enter a comma-separated list of words:</p>
-      <textarea name="text-input">one, two, three</textarea>
-      <br/><br/>
-
-      <p>Choose some options:</p>
-      <input type="checkbox" name="upper-case" value="true"> Upper-case
-      <br/>
-      <input type="checkbox" name="sort" value="true"> Alphabetize
-      <br/><br/>
-
-      <input type="submit" />
-    </form>
-
+        <form action="/text" method="POST">
+            <p>Enter a comment here!: </p>
+            <textarea name="text-input">Tyler, WOAH! What a portfolio! You're so cool DUDE, I wish to be like you when i grow up! :)</textarea>
+            <br/><br/>
+            <input type="submit" />
+        </form>
+     <ul id="server-data-container"></ul>
     </div>
   </body>
 </html>

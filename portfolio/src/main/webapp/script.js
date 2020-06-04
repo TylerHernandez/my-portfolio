@@ -12,20 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Adds a random greeting to the page.
- */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
-
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
-}
 //adds a random fact to the page
 function addRandomFact(){
     const randomFacts=
@@ -72,6 +59,7 @@ function addQuoteToDom(quote) {
   const quoteContainer = document.getElementById('quote-container');
   quoteContainer.innerText = quote;
 }
+
 //fetch data from servlet
 async function getData() {
   const response = await fetch('/data');
@@ -80,21 +68,30 @@ async function getData() {
 }
 
 function getJSON() {
-  fetch('/data').then(response => response.json()).then((data) => {
+  fetch('/text').then(response => response.json()).then((data) => {
     // data is an object, not a string, so we have to
     // reference its fields to create HTML content
     console.log(data);
     const dataListElement = document.getElementById('server-data-container');
     dataListElement.innerHTML = '';
-    dataListElement.appendChild(
-        createListElement('first: ' + data.a1));
-    dataListElement.appendChild(
-        createListElement('second: ' + data.a2));
-    dataListElement.appendChild(
-        createListElement('third: ' + data.a3));
+    // dataListElement.appendChild(
+    //     createListElement('first: ' + data.message1));
+    // dataListElement.appendChild(
+    //     createListElement('second: ' + data.message2));
+    // dataListElement.appendChild(
+    //     createListElement('third: ' + data.message3));
+    //     console.log("hit");
+    //     console.log(data);
+    for(var key in data) {
+        dataListElement.appendChild(
+        createListElement(data[key]));
         console.log("hit");
-        console.log(data);
+    }
   });
+}
+
+function layoutComments() {
+    
 }
 
 /** Creates an <li> element containing text. */
@@ -102,4 +99,16 @@ function createListElement(text) {
   const liElement = document.createElement('li');
   liElement.innerText = text;
   return liElement;
+}
+
+function getTextInput() {
+  fetch('/text').then(response => response.json()).then((text) => {
+    const totalEl = document.getElementById('text-input');
+
+    // Build the list of history entries.
+    const historyEl = document.getElementById('text-input');
+    game.history.forEach((line) => {
+      historyEl.appendChild(createListElement(line));
+    });
+  });
 }
