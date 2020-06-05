@@ -19,29 +19,64 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.sps.data.Task;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter; 
+import com.google.gson.Gson;
 import java.util.*;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/text")
 public class DataServlet extends HttpServlet {
-    public ArrayList<String> list = new ArrayList<String>();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    Query query = new Query("Task").addSort("time", SortDirection.DESCENDING);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+
+    List<Task> tasks = new ArrayList<>();
+    for (Entity entity : results.asIterable()) {
+      long id = entity.getKey().getId();
+      String comment = (String) entity.getProperty("comment");
+      String timestamp = (String) entity.getProperty("time");
+
+      Task task = new Task(id, comment, timestamp);
+      tasks.add(task);
+    }
+    
+    Gson gson = new Gson();
+
     response.setContentType("application/json;");
-    String json = nconvertToJson(list);
-    response.getWriter().println(json);
+    response.getWriter().println(gson.toJson(tasks));
+    System.out.println(gson.toJson(tasks));
   }
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
     // Get the input from the form.
     String text = getParameter(request, "text-input", "");
-    // Respond with the result.
-    response.setContentType("text/html;");
-    response.getWriter().println(text);
-    list.add(text);
+
+    // Set up current time 
+    LocalDateTime myDateObj = LocalDateTime.now();
+    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    String time = myDateObj.format(myFormatObj);
+
+    // Store comment and time 
+    Entity taskEntity = new Entity("Task");
+    taskEntity.setProperty("comment", text);
+    taskEntity.setProperty("time", time);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(taskEntity);
+    //System.out.println(taskEntity);
     response.sendRedirect("/index.html");
-    //System.out.println(text);
   }
   private String getParameter(HttpServletRequest request, String name, String defaultValue) {
     String value = request.getParameter(name);
@@ -50,7 +85,6 @@ public class DataServlet extends HttpServlet {
     }
     return value;
   }
-// use this if more than one element in list
   private String nconvertToJson(ArrayList<String> list) {
       //if only one element in list
       if (list.size()==1) {

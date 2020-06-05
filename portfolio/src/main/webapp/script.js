@@ -68,36 +68,19 @@ async function getData() {
 }
 
 function getJSON() {
-  fetch('/text').then(response => response.json()).then((data) => {
-    // data is an object, not a string, so we have to
-    // reference its fields to create HTML content
-    console.log(data);
-    const dataListElement = document.getElementById('server-data-container');
-    dataListElement.innerHTML = '';
-    // dataListElement.appendChild(
-    //     createListElement('first: ' + data.message1));
-    // dataListElement.appendChild(
-    //     createListElement('second: ' + data.message2));
-    // dataListElement.appendChild(
-    //     createListElement('third: ' + data.message3));
-    //     console.log("hit");
-    //     console.log(data);
-    for(var key in data) {
-        dataListElement.appendChild(
-        createListElement(data[key]));
-        console.log("hit");
-    }
-  });
-}
-
-function layoutComments() {
-    
+    fetch('/text').then(response => response.json()).then((tasks) => {
+        console.log(tasks);
+        const taskEl = document.getElementById('server-data-container');
+        tasks.forEach((task) => {
+            taskEl.appendChild(createListElement(task));
+        })
+    });
 }
 
 /** Creates an <li> element containing text. */
 function createListElement(text) {
   const liElement = document.createElement('li');
-  liElement.innerText = text;
+  liElement.innerText = text.comment;
   return liElement;
 }
 
