@@ -1,8 +1,23 @@
+.button {
+ text-align: center;
+ background-color:ghostwhite;
+ margin: 8px 4px;
+ font-size: 30px;
+}
+
+#github {
+ background-image: url("images/github.png");
+}
+
+#background {
+ background-image: url("images/background.jpg");
+}
+
 .nav-link {
-font-family: 'Merriweather', serif;
-font-weight: bold;
-font-size: 40px;
-text-align: center;
+ font-family: 'Merriweather', serif;
+ font-weight: bold;
+ font-size: 30px;
+ text-align: center;
 }
 
 #content {
@@ -19,7 +34,7 @@ text-align: center;
   margin-left: auto;
   margin-right: auto;
   color: darkblue;
-  font-size: 150px;
+  font-size: 100px;
   margin-bottom: 20px;
 }
 
@@ -29,7 +44,7 @@ text-align: center;
 }
 
 #clickme{
-  font-size:40px;
+  font-size:30px;
 }
 
 #subcontent {
