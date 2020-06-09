@@ -85,27 +85,4 @@ public class DataServlet extends HttpServlet {
     }
     return value;
   }
-  private String nconvertToJson(ArrayList<String> list) {
-      //if only one element in list
-      if (list.size()==1) {
-        String json = "{";
-        json += "\"message1\": ";
-        json += "\"" + list.get(0) + "\"";
-        json += "}";
-        return json;
-      }
-
-      String json = "{";
-      for (int i=0; i<list.size()-1; i++)
-      {
-          json+="\"message" + Integer.toString(i+1) + "\": ";
-          json+= "\"" + list.get(i) + "\"";
-          json+= ", ";
-      }
-      json+="\"message" + Integer.toString(list.size()) + "\": ";
-      json += "\"" + list.get(list.size()-1) + "\"";
-      json += "}";
-  
-  return json;
-  }
 }
