@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Tyler's Portfolio Comments</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
+  <body onload="getJSON()" id="background">
+        <a href="index.html" class="button">Home</a>
+        <a href="percy.html" class="button">Percy</a>
+        <a href="comments.html" class="button">Comments</a>
+        <a href="https://github.com/TylerHernandez" class="button">GitHub</a>
+        <a href="https://www.linkedin.com/in/tyler-hernandez-92424b191/" class="button">LinkedIn</a>
+    <div id="content">
+
+            <form action="/text" method="POST">
+             <p>Enter a comment here!: </p>
+             <textarea name="text-input">Leave a comment here! :)</textarea>
+             <br/><br/>
+             <input type="submit" />
+            </form>
+            <ul id="server-data-container"></ul>
+
+        <div id="subcontent">
+            <a> I am making this portfolio during my time here at Google as a STEP intern </a>
+        </div>
+
+
+    </div>
+  </body>
+</html>

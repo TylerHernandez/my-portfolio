@@ -35,7 +35,6 @@ async function getData() {
 
 function getJSON() {
     fetch('/text').then(response => response.json()).then((tasks) => {
-        console.log(tasks);
         const taskEl = document.getElementById('server-data-container');
         tasks.forEach((task) => {
             taskEl.appendChild(createListElement(task));

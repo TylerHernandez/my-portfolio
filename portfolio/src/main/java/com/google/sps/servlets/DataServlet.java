@@ -14,6 +14,8 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,13 +32,27 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter; 
 import com.google.gson.Gson;
 import java.util.*;
+import java.io.PrintWriter;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/text")
 public class DataServlet extends HttpServlet {
 
-  @Override
+  @Override //this runs everytime the home page is loaded
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    System.out.println("get data servlet");
+    
+    //check if user is logged in, if not send user to login page
+    UserService userService = UserServiceFactory.getUserService();
+     if (!userService.isUserLoggedIn()) {
+        System.out.println("redirecting to /login");
+        response.sendRedirect("/login");
+        return;
+    }
+    else{
+    response.setContentType("text/html;");
+    PrintWriter out = response.getWriter();
+
     Query query = new Query("Task").addSort("time", SortDirection.DESCENDING);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -51,16 +67,23 @@ public class DataServlet extends HttpServlet {
       Task task = new Task(id, comment, timestamp);
       tasks.add(task);
     }
+
     
     Gson gson = new Gson();
 
     response.setContentType("application/json;");
     response.getWriter().println(gson.toJson(tasks));
-    System.out.println(gson.toJson(tasks));
+    }
   }
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
+    System.out.println("post dataservlet");
+    PrintWriter out = response.getWriter();
+    UserService userService = UserServiceFactory.getUserService();
+    if (!userService.isUserLoggedIn()) {
+        response.sendRedirect("/login");
+        return;
+    }
     // Get the input from the form.
     String text = getParameter(request, "text-input", "");
 
@@ -75,8 +98,7 @@ public class DataServlet extends HttpServlet {
     taskEntity.setProperty("time", time);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(taskEntity);
-    //System.out.println(taskEntity);
-    response.sendRedirect("/index.html");
+    response.sendRedirect("/comments.html");
   }
   private String getParameter(HttpServletRequest request, String name, String defaultValue) {
     String value = request.getParameter(name);
