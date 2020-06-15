@@ -1,9 +1,80 @@
+.button {
+ text-align: center;
+ background-color:ghostwhite;
+ margin: 8px 4px;
+ font-size: 30px;
+}
+
+#github {
+ background-image: url("images/github.png");
+}
+
+#background {
+ background-image: url("images/background.jpg");
+}
+
+.nav-link {
+ font-family: 'Merriweather', serif;
+ font-weight: bold;
+ font-size: 30px;
+ text-align: center;
+}
+
 #content {
   margin-left: auto;
   margin-right: auto;
-  width: 650px;
+  width: 1050px;
+  background-color:lightblue;
+  opacity: 0.85;
+  text-align: center;
+  font-size:50px;
 }
 
-#greeting-container {
-  margin-top: 20px;
+#meimg {
+ opacity: 1.0;
+}
+
+#title {
+  margin-top:20px;
+  margin-left: auto;
+  margin-right: auto;
+  color: darkblue;
+  font-size: 100px;
+  margin-bottom: 20px;
+}
+
+#fact-container{
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+#clickme{
+  font-size:30px;
+  opacity: 1.0;
+}
+
+#subcontent {
+    margin-top: 15px;
+    margin-bottom: 30px;
+    padding-bottom:30px;
+}
+
+#percyContent {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1050px;
+  background-color:transparent;
+  text-align: center;
+  font-size:50px;
+  margin-bottom:2500px;
+  color:darkorange;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
+}
+#percyDivs{
+  padding-top:200px;
+  font-weight:bold;
+}
+#percyBody {
+ background-image: url("images/percy.jpg");
 }

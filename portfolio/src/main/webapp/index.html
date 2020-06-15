@@ -2,17 +2,40 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>Tyler's Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="getJSON()" id="background">
+        <a href="index.html" class="button">Home</a>
+        <a href="percy.html" class="button">Percy</a>
+        <a href="comments.html" class="button">Comments</a>
+        <a href="charts.html" class="button">Charts</a>
+        <a href="https://github.com/TylerHernandez" class="button">GitHub</a>
+        <a href="https://www.linkedin.com/in/tyler-hernandez-92424b191/" class="button">LinkedIn</a>
+        <form action="/login" method="GET">
+          <button>Log In</button>
+        </form>
     <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+
+      <h1 id = "title">Tyler Hernandez</h1>
+      <p>Marist College has really nice bathrooms.</p>
+      <p>I love coffee and sleep</p>
+          <a id= "meimg" href="images/me.jpg"><img id= "meimg" src="images/me.jpg"/></a>
+    
+    <p>Click here to get a random fact about me:</p>
+      <button id="clickme" style="height: 150px; width: 150px;"onclick="addRandomFact()">Click Me</button>
+      <div id="fact-container"></div>
+
+        <nav>
+            <a id= class="nav-link" href="/percy.html">Click to see my dog</a>
+        </nav>
+        
+        <div id="subcontent">
+            <a> I am making this portfolio during my time here at Google as a STEP intern </a>
+        </div>
+
+
     </div>
   </body>
 </html>
