@@ -78,3 +78,10 @@
 #percyBody {
  background-image: url("images/percy.jpg");
 }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
